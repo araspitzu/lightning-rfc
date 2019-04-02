@@ -220,7 +220,7 @@ are not valid DER-encoded compressed secp256k1 pubkeys.
   - `dust_limit_satoshis` is greater than `channel_reserve_satoshis`.
   - the funder's amount for the initial commitment transaction is not sufficient for full [fee payment](03-transactions.md#fee-payment).
   - both `to_local` and `to_remote` amounts for the initial commitment transaction are less than or equal to `channel_reserve_satoshis` (see [BOLT 3](03-transactions.md#commitment-transaction-outputs)).
-  - `funding_satoshis` is greater than 2^24 and the receiver does not support `option_i_wumbo_you_wumbo`. 
+  - `funding_satoshis` is greater than 2^24 and the receiver does not support `option_wumbo`. 
 
 The receiving node MUST NOT:
   - consider funds received, using `push_msat`, to be received until the funding transaction has reached sufficient depth.
