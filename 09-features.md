@@ -26,15 +26,14 @@ These flags may only be used in the `init` message:
 | 3  | `initial_routing_sync` | Indicates that the sending node needs a complete routing information dump | [BOLT #7](07-routing-gossip.md#initial-sync) |
 | 4/5  | `option_upfront_shutdown_script` | Commits to a shutdown scriptpubkey when opening channel | [BOLT #2](02-peer-protocol.md#the-open_channel-message) |
 | 6/7  | `gossip_queries`           | More sophisticated gossip control | [BOLT #7](07-routing-gossip.md#query-messages) |
-| 14/15  | `option_i_wumbo_you_wumbo`   | Can create large channels | [BOLT #2](02-peer-protocol.md#the-open_channel-message) 
 
 ## Assigned `globalfeatures` flags
 
-These flags may only be used in the `init` or `node_announcement` message:
+These flags may only be used in the `init` and `node_announcement` message:
 
 | Bits | Name             |Description                                     | Link                                                                |
 |------|------------------|------------------------------------------------|---------------------------------------------------------------------|
-| 16/17 | `option_wumborama` | Can handle large payments		   | (#Rationale) |
+| 16/17 | `option_wumbo` | Can create large channels		   | [Rationale](#Rationale) |
 
 
 ## Requirements
@@ -49,7 +48,7 @@ There is no _even_ bit for `initial_routing_sync`, as there would be little
 point: a local node can't determine if a remote node complies, and it must
 interpret the flag, as defined in the initial spec.
 
-The `option_wumborama` is used to let everyone know this node is willing to use `option_i_wumbo_you_wumbo` with anyone.
+The `option_wumbo` is used to let everyone know this node supports large channel funding.
 Since it's broadcast in the `node_announcement` message other nodes can use it to identify peers 
 willing to accept large channel even before exchanging the `init` message with them. 
 

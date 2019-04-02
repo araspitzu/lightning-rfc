@@ -165,7 +165,7 @@ The `shutdown_scriptpubkey` allows the sending node to commit to where
 funds will go on mutual close, which the remote node should enforce
 even if a node is compromised later.
 
-The `option_i_wumbo_you_wumbo` allows peers to signal that they will accept
+The `option_wumbo` allows peers to signal that they will accept
 `funding_satoshis` greater than 2^24.
 
 #### Requirements
@@ -173,8 +173,8 @@ The `option_i_wumbo_you_wumbo` allows peers to signal that they will accept
 The sending node:
   - MUST ensure the `chain_hash` value identifies the chain it wishes to open the channel within.
   - MUST ensure `temporary_channel_id` is unique from any other channel ID with the same peer.
-  - if both nodes advertised `option_i_wumbo_you_wumbo`:
-    - MAY set `funding_satoshis` greater than 2^24 satoshi.
+  - if both nodes advertised `option_wumbo`:
+    - MAY set `funding_satoshis` greater than or equal to 2^24 satoshi.
   - otherwise:
     - MUST set `funding_satoshis` to less than 2^24 satoshi.
   - MUST set `push_msat` to equal or less than 1000 * `funding_satoshis`.
@@ -228,7 +228,7 @@ The receiving node MUST NOT:
 #### Rationale
 
 The requirement for `funding_satoshis` to be less than 2^24 satoshi was a temporary self-imposed limit while implementations were not yet considered stable.
-, it can be lifted by advertising `option_i_wumbo_you_wumbo`. 
+, it can be lifted by advertising `option_wumbo`. 
 
 The *channel reserve* is specified by the peer's `channel_reserve_satoshis`: 1% of the channel total is suggested. Each side of a channel maintains this reserve so it always has something to lose if it were to try to broadcast an old, revoked commitment transaction. Initially, this reserve may not be met, as only one side has funds; but the protocol ensures that there is always progress toward meeting this reserve, and once met, it is maintained.
 
